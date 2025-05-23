@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌹 Un detalle especial para ti 🌹</title>
+    <style>
+      /* Estilos generales */
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle, #ffb3c1, #590d22);
+        font-family: "Arial", sans-serif;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      /* Botón */
+      .open-flower-btn {
+        background: white;
+        border: 3px solid red;
+        padding: 15px 30px;
+        border-radius: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+      }
+
+      .open-flower-btn:hover {
+        background: red;
+        color: white;
+        transform: scale(1.1);
+      }
+
+      /* Contenedor de la flor */
+      .flower-container {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: scale(0);
+        transition: transform 1s ease-in-out;
+      }
+
+      /* Pétalos */
+      .petal {
+        position: absolute;
+        width: 50px;
+        height: 80px;
+        background: red;
+        border-radius: 50%;
+        opacity: 0;
+        transition: all 1s ease-in-out;
+      }
+
+      .petal:nth-child(1) {
+        transform: rotate(0deg) translateY(-40px);
+      }
+      .petal:nth-child(2) {
+        transform: rotate(36deg) translateY(-40px);
+      }
+      .petal:nth-child(3) {
+        transform: rotate(72deg) translateY(-40px);
+      }
+      .petal:nth-child(4) {
+        transform: rotate(108deg) translateY(-40px);
+      }
+      .petal:nth-child(5) {
+        transform: rotate(144deg) translateY(-40px);
+      }
+      .petal:nth-child(6) {
+        transform: rotate(180deg) translateY(-40px);
+      }
+      .petal:nth-child(7) {
+        transform: rotate(216deg) translateY(-40px);
+      }
+      .petal:nth-child(8) {
+        transform: rotate(252deg) translateY(-40px);
+      }
+      .petal:nth-child(9) {
+        transform: rotate(288deg) translateY(-40px);
+      }
+      .petal:nth-child(10) {
+        transform: rotate(324deg) translateY(-40px);
+      }
+
+      /* Centro de la flor */
+      .center {
+        width: 40px;
+        height: 40px;
+        background: yellow;
+        border-radius: 50%;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+
+      /* Mensaje animado */
+      .message {
+        font-size: 22px;
+        color: white;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: white">🌹En este dia tan especial mi💖 de melon 🌹</h1>
+
+    <!-- Botón para abrir la flor -->
+    <button class="open-flower-btn" id="openButton" onclick="bloomFlower()">
+      ✨ Te quiero decir que... ✨
+    </button>
+
+    <!-- Contenedor de la flor -->
+    <div class="flower-container" id="flower">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+    </div>
+
+    <!-- Mensaje sorpresa -->
+    <p class="message" id="message"></p>
+
+    <script>
+      function bloomFlower() {
+        document.getElementById("openButton").style.display = "none";
+        let flower = document.getElementById("flower");
+        let petals = document.querySelectorAll(".petal");
+        let center = document.querySelector(".center");
+        let message = document.getElementById("message");
+
+        flower.style.transform = "scale(1)";
+
+        // Mostrar pétalos con retraso
+        petals.forEach((petal, index) => {
+          setTimeout(() => {
+            petal.style.opacity = "1";
+          }, index * 500);
+        });
+
+        // Mostrar centro y mensaje después de los pétalos
+        setTimeout(() => {
+          center.style.opacity = "1";
+          message.style.opacity = "1";
+          typeMessage();
+        }, 5500);
+      }
+
+      function typeMessage() {
+        let messageText =
+          "🌹Hace mas de 24 meses que llegaste a mi vida con una sonrrisa y ahora no puedo pensar un dia sin ti. Te amo  Daniela de mi 💖";
+        let messageElement = document.getElementById("message");
+        let index = 0;
+        messageElement.innerHTML = ""; // Usamos innerHTML en lugar de textContent
+
+        function type() {
+          if (index < messageText.length) {
+            messageElement.innerHTML += messageText[index];
+            index++;
+            setTimeout(type, 100);
+          }
+        }
+        type();
+      }
+    </script>
+  </body>
+</html>
